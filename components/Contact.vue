@@ -3,7 +3,7 @@
     <h2 class="subtitle">Contact</h2>
     <vs-row class="form-input-container">
       <vs-col vs-type="flex" vs-justify="left" vs-align="center" w="10">
-        <div class="center center-inputs">
+        <div class="center center-inputs contact-name">
           <vs-input v-model="contact.name" placeholder="Name">
             <template #icon> <i class="bx bx-lock-open-alt"></i> </template>
           </vs-input>
@@ -45,6 +45,10 @@ export default {
 <style>
 .contact .vs-input {
   width: 100%;
+}
+
+.contact .contact-name input {
+  padding-left: 42px;
 }
 
 .contact .input-title .vs-input {

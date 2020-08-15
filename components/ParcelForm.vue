@@ -15,7 +15,7 @@
       />
       <Contact :contact="quote.contact_attributes" />
 
-      <AgreeTerm :agree="agree_term" />
+      <AgreeTerm v-on:agree-term="onTermClick" :agree="agree_term" />
 
       <div class="center con-checkbox agree-term">
         <vs-row class="form-input-container">
@@ -62,12 +62,14 @@ export default {
 
         shipment_items_attributes: [
           {
-            unit: '',
+            number_of_item: '',
             width: '',
             length: '',
             height: '',
             weight: '',
             description: '',
+            weight_unit: 'kg',
+            dimension_unit: 'cm',
           },
         ],
 
@@ -115,9 +117,17 @@ export default {
       this.quote.shipment_items_attributes.splice(index, 1)
     },
 
+    onTermClick(value) {
+      this.quote.agree_term = value
+    },
+
     validate(item) {
       return (
-        item.unit && item.width && item.length && item.height && item.weight
+        item.number_of_item &&
+        item.width &&
+        item.length &&
+        item.height &&
+        item.weight
       )
     },
 

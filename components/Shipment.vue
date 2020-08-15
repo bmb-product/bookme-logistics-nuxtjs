@@ -5,7 +5,7 @@
       <vs-row class="form-input-container shipment-item">
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="2">
           <vs-input
-            v-model="item.unit"
+            v-model.lazy="item.number_of_item"
             type="number"
             placeholder="Unit"
             class="input-unit"
@@ -14,7 +14,7 @@
 
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="2">
           <vs-input
-            v-model="item.width"
+            v-model.lazy="item.width"
             type="number"
             placeholder="Width"
             class="input-dimension"
@@ -22,7 +22,7 @@
 
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="2"
           ><vs-input
-            v-model="item.length"
+            v-model.lazy="item.length"
             type="number"
             placeholder="Length"
             class="input-dimension"
@@ -30,7 +30,7 @@
 
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="2"
           ><vs-input
-            v-model="item.height"
+            v-model.lazy="item.height"
             type="number"
             placeholder="Height"
             class="input-dimension"
@@ -43,7 +43,7 @@
           vs-align="center"
           w="2"
           ><vs-input
-            v-model="item.weight"
+            v-model.lazy="item.weight"
             placeholder="Weight"
             class="input-dimension"
         /></vs-col>
@@ -71,7 +71,7 @@
       <!-- <vs-row class="form-input-container shipment-item">
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="12">
           <vs-input
-            v-model="item.description"
+            v-model.lazy="item.description"
             placeholder="Description"
             class="input-desc"
           />

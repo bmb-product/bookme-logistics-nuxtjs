@@ -10,9 +10,13 @@ export const mutations = {
 }
 
 export const actions = {
-  submitQuoteForm(context, payload) {
-    context.commit('setRequestLoading', true)
-    console.log('submit form', payload)
+  async submitQuoteForm(context, payloads) {
+    // context.commit('setRequestLoading', true)
+    console.log('submit form in the action', payloads)
+
+    const ip = await this.$axios.$post('/api/quotes', payloads)
+    console.log('test ip: ------------- ', ip)
+
     context.commit('setRequestLoading', false)
   },
 }

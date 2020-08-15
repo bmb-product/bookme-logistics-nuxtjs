@@ -1,7 +1,11 @@
+require('dotenv').config()
+
+console.log('env base url:', process.env.BASE_URL)
+
 export default {
   server: {
     port: 8080,
-    host: '0.0.0.0',
+    // host: '0.0.0.0',
   },
   /*
    ** Nuxt rendering mode
@@ -42,7 +46,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['@/plugins/vuesax'],
+  plugins: ['@/plugins/vuesax', '~/plugins/axios'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -65,12 +69,29 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
+    '@nuxtjs/dotenv',
   ],
+  dotenv: {},
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseRL: process.env.BASE_URL,
+    retry: { retries: 3 },
+  },
+
+  // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config/#what-are-environment-variables
+  // available to frontend with $config
+  publicRuntimeConfig: {
+    browserBaseURL: process.env.BROWSER_BASE_URL,
+  },
+
+  // not exposed to frontend. this is for Api key, secret token
+  privateRuntimeConfig: {
+    baseURL: process.env.BASE_URL,
+    jwtSecretKey: process.env.JWT_SECRET_KEY,
+  },
   /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
@@ -81,4 +102,13 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+
+  serverMiddleware: [
+    // Will register redirect-ssl npm package
+    // 'redirect-ssl',
+
+    '~/server/logger',
+    //  Will register file from project api directory to handle /api/* requires
+    '~/server/api.js',
+  ],
 }

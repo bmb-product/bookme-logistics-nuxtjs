@@ -2,7 +2,7 @@
   <div class="center con-checkbox agree-term">
     <vs-row class="form-input-container">
       <vs-col vs-type="flex" vs-justify="left" vs-align="center" w="12">
-        <vs-checkbox val="automatically" v-model="agree">
+        <vs-checkbox val="automatically" v-model="checked">
           By clicking this you agree with our
           <nuxt-link to="/term_of_use" class="live-link" target="_blank">
             terms of use
@@ -16,6 +16,16 @@
 <script>
 export default {
   props: ['agree'],
+  computed: {
+    checked: {
+      get() {
+        return this.agree
+      },
+      set(value) {
+        this.$emit('agree-term', value)
+      },
+    },
+  },
 }
 </script>
 
