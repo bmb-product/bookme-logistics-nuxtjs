@@ -33,7 +33,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['vuesax/dist/vuesax.css'],
+  css: [
+    'vuesax/dist/vuesax.css',
+    '~/assets/stylesheets/transition.css',
+    '~/assets/stylesheets/main.css',
+  ],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
